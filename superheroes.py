@@ -2,20 +2,6 @@ import random
 
 name = "main";
 
-class Hero:
-
-    name = ""
-
-    def __init__(self, name): # Initialize starting values
-        self.name = name;
-    def add_ability(self, ability):        # Add ability to abilities list
-
-        print("example");
-
-    def attack(self):          # Run attack() on every ability hero has
-
-        print("example");
-
 class Ability:
 
     name = "";
@@ -33,11 +19,30 @@ class Ability:
     def update_attack(self, attack_strength):
             # Update attack value
         print("example");
+class Hero:
+
+    name = ""
+    abilities = Ability();
+
+    def __init__(self, name): # Initialize starting values
+        self.name = name;
+        self.abilities = list()
+    def add_ability(self, ability): # Add ability to abilities list
+        abilities.append(ability);
+        print("example");
+
+    def attack(self): # Run attack() on every ability hero has
+        for ability in abilities:
+            ability.attack();
+        print("example");
 
 
 if name == "main":
-    # If you run this file from the terminal this block is executed.
-    my_hero = Hero("bob");
-    print(my_hero.name);
-    my_hero.add_ability;
-    my_hero.attack;
+    hero = Hero("Wonder Woman")
+    # print(hero.attack())
+    ability = Ability("Divine Speed", 300)
+    hero.add_ability(ability)
+    print(hero.attack())
+    new_ability = Ability("Super Human Strength", 800)
+    hero.add_ability(new_ability)
+    print(hero.attack())
