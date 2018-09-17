@@ -53,6 +53,24 @@ class Hero:
             total_strength += ability.attack()
         return total_strength
 
+
+    def defend(self): #runs defend method on each armor, calculate total defense. Check if hero is dead
+
+        total_defense = 0
+        for x in self.armors:
+            total_defense += x.defend
+        if self.health < 1:
+            total_defense = 0
+
+    #subtract the damage amount from the hero's health. Update death count if hero dies
+    def take_damage(self, damage_amt):
+        self.health -= damage_amt
+        if self.health < 1:
+            self.deaths += 1
+
+    def add_kill(self, num_kills): #add the number of kills to self.kills
+        self.kills += num_kills
+
 class Team:
     #Instantiate resources.
     def __init__(self, team_name):
