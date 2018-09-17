@@ -6,23 +6,21 @@ class Ability:
     name = ""
     attack_strength = 0
 
-    def __init__(self, name, attack_strength):
+    def __init__(self, name, attack_strength): # Initialize starting values
         self.name = name
         self.attack_strength = attack_strength
-        print("example")
 
+    #  generate and return attack value of the ability
     def attack(self):
 
         lower_value = self.attack_strength // 2
 
         return random.randint(lower_value, self.attack_strength)
 
-        # Return attack value
 
+    # update the value of the current attack strength with the new value.
     def update_attack(self, attack_strength):
-            # Update attack value
-        print("example")
-
+        self.attack_strength = attack_strength;
 
 class Hero:
 
