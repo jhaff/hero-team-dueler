@@ -33,8 +33,6 @@ class Weapon(Ability):
 
 class Hero:
 
-    # name = ""
-    # abilities = list();
 
     def __init__(self, name): # Initialize starting values
         self.name = name
@@ -49,6 +47,34 @@ class Hero:
             total += ability.attack()
 
         return total
+
+class Team:
+    #Instantiate resources.
+    def init(self, team_name):
+        self.name = team_name
+        self.heroes = list()
+
+    def add_hero(self, Hero):
+        self.heroes.append(Hero)
+
+    #find and remove specified hero, or return 0 if not found
+    def remove_hero(self, name):
+        for x in self.heroes:
+            if x == name:
+                self.heroes.pop()
+                return "success"
+        return 0
+
+    #loop through heroes to find a specified hero, or return 0 if not found
+    def find_hero(self, name):
+        for x in self.heroes:
+            if x == name:
+                return self.heroes[x]
+        return 0
+
+
+    def view_all_heroes(self):
+        print(self.heroes)
 
 
 if __name__ == "__main__":
