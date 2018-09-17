@@ -1,0 +1,5 @@
+{
+  "hero_test.py::test_find_hero": true, 
+  "hero_test.py::test_print_heroes": true, 
+  "hero_test.py::test_team_remove_hero": true
+}

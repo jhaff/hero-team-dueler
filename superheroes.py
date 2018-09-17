@@ -50,7 +50,7 @@ class Hero:
 
 class Team:
     #Instantiate resources.
-    def init(self, team_name):
+    def __init__(self, team_name):
         self.name = team_name
         self.heroes = list()
 
@@ -71,7 +71,6 @@ class Team:
             if x == name:
                 return self.heroes[x]
         return 0
-
 
     def view_all_heroes(self):
         print(self.heroes)
