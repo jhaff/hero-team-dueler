@@ -34,9 +34,15 @@ class Weapon(Ability):
 
 class Hero:
 
-    def __init__(self, name): # Initialize starting values
+    def __init__(self, name, health=100): # Initialize starting values
         self.name = name
         self.abilities = list()
+
+        self.armors = list()
+        self.start_health = health
+        self.health = health
+        self.deaths = 0
+        self.kills = 0
 
     def add_ability(self, ability): # Add ability to abilities list
         self.abilities.append(ability)
@@ -76,6 +82,14 @@ class Team:
     def view_all_heroes(self):
         for x in self.heroes:
             print(x.name)
+
+class Armor:
+    def __init__(self, name, defense): #Instantiate name and defense strength
+        self.name = name
+        self.defense = defense
+
+    def defend(self):
+        return random.randint(0, self.defense)
 
 
 if __name__ == "__main__":
