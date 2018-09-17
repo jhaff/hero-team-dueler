@@ -1,10 +1,11 @@
+from io import BytesIO
 import random
-
 
 class Ability:
 
     name = ""
-    attack_strength = 0
+    attack_strength = 0    # represents the maximum attack strength.
+
 
     def __init__(self, name, attack_strength): # Initialize starting values
         self.name = name
@@ -33,20 +34,18 @@ class Weapon(Ability):
 
 class Hero:
 
-
     def __init__(self, name): # Initialize starting values
         self.name = name
         self.abilities = list()
+
     def add_ability(self, ability): # Add ability to abilities list
         self.abilities.append(ability)
 
     def attack(self): # Run attack() on every ability hero has
-        total = 0
-
+        total_strength = 0
         for ability in self.abilities:
-            total += ability.attack()
-
-        return total
+            total_strength += ability.attack()
+        return total_strength
 
 class Team:
     #Instantiate resources.
@@ -59,26 +58,29 @@ class Team:
 
     #find and remove specified hero, or return 0 if not found
     def remove_hero(self, name):
+        if self.heroes == []:
+            return 0
         for x in self.heroes:
-            if x == name:
-                self.heroes.pop()
+            if x.name == name:
+                self.heroes.remove(x)
                 return "success"
         return 0
 
     #loop through heroes to find a specified hero, or return 0 if not found
     def find_hero(self, name):
         for x in self.heroes:
-            if x == name:
-                return self.heroes[x]
+            if x.name == name:
+                return x
         return 0
 
     def view_all_heroes(self):
-        print(self.heroes)
+        for x in self.heroes:
+            print(x.name)
 
 
 if __name__ == "__main__":
     hero = Hero("Wonder Woman")
-    # print(hero.attack())
+    print(hero.attack())
     ability = Ability("Divine Speed", 300)
     hero.add_ability(ability)
     print(hero.attack())
