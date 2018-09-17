@@ -22,6 +22,15 @@ class Ability:
     def update_attack(self, attack_strength):
         self.attack_strength = attack_strength;
 
+#subclass of Ability
+class Weapon(Ability):
+
+    def attack(self):
+
+    #weapons less effective than Abilities, so range from 0 to attack strength.
+        return random.randint(0, self.attack_strength)
+
+
 class Hero:
 
     # name = ""
