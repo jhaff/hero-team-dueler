@@ -58,7 +58,7 @@ class Hero:
 
         total_defense = 0
         for x in self.armors:
-            total_defense += x.defend
+            total_defense += x.defend()
         if self.health < 1:
             total_defense = 0
 
@@ -100,6 +100,60 @@ class Team:
     def view_all_heroes(self):
         for x in self.heroes:
             print(x.name)
+
+    class Team:
+
+    #total our teams attack strength and call the defend() method on the rival team
+    def attack(self, other_team):
+        total_team_attack = 0
+        for x in self.heroes:
+            if x.health > 0:
+                total_team_attack += x.attack()
+
+        update_kills(deal_damage(total_team_attack - other_team.defend()))
+
+
+        """
+        This method should total our teams attack strength and call the defend() method on the rival team that is passed in.
+
+        It should call add_kill() on each hero with the number of kills made.
+        """
+
+    def defend(self, damage_amt): # calculate our team's total defense.
+
+        total_team_defense = 0
+
+        for x in self.heroes:
+            total_team_defense += x.defend()
+
+        return total_team_defense
+
+    # Divide the total damage amongst all heroes.
+    # Return the number of heros that died in attack.
+    def deal_damage(self, damage):
+        damage_each = damage / heroes.length()
+        local_death_count = 0
+
+        for x in heroes:
+            x.take_damage(damage_each)
+            if x.health < 1:
+                local_death_count += 1
+
+        return local_death_count
+
+    #resets all heroes to full health
+    def revive_heroes(self, health=100):
+        for x in heroes:
+            x.health = 100
+
+    # print the ratio of kills/deaths for each member of the team to the screen.
+    def stats(self):
+        for x in heroes:
+            print(x.kills / x.deaths)
+
+    def update_kills(self, num): #updates all heroes in a team when there is a kill
+        for x in heroes:
+            x.kills += num
 
 class Armor:
     def __init__(self, name, defense): #Instantiate name and defense strength
