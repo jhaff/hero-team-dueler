@@ -61,6 +61,7 @@ class Hero:
             total_defense += x.defend()
         if self.health < 1:
             total_defense = 0
+        return total_defense
 
     #subtract the damage amount from the hero's health. Update death count if hero dies
     def take_damage(self, damage_amt):
@@ -70,6 +71,9 @@ class Hero:
 
     def add_kill(self, num_kills): #add the number of kills to self.kills
         self.kills += num_kills
+
+    def add_armor(self, armor):
+        self.armors.append(armor)
 
 class Team:
     #Instantiate resources.
@@ -101,20 +105,35 @@ class Team:
         for x in self.heroes:
             print(x.name)
 
-class Team:
-
     #total our teams attack strength and call the defend() method on the rival team
     #It should call add_kill() on each hero with the number of kills made.
+    def update_kills(self, num): #updates all heroes in a team when there is a kill
+        for x in self.heroes:
+            x.kills += num
+
+    # Divide the total damage amongst all heroes.
+    # Return the number of heros that died in attack.
+    def deal_damage(self, damage):
+        damage_each = damage / len(self.heroes)
+        local_death_count = 0
+
+        for x in self.heroes:
+            x.take_damage(damage_each)
+            if x.health < 1:
+                local_death_count += 1
+
+        return local_death_count
+
     def attack(self, other_team):
         total_team_attack = 0
         for x in self.heroes:
             if x.health > 0:
                 total_team_attack += x.attack()
 
-        update_kills(deal_damage(total_team_attack - other_team.defend()))
+        self.update_kills(self.deal_damage(total_team_attack - other_team.defend()))
 
 
-    def defend(self, damage_amt): # calculate our team's total defense.
+    def defend(self): # calculate our team's total defense.
 
         total_team_defense = 0
 
@@ -123,18 +142,6 @@ class Team:
 
         return total_team_defense
 
-    # Divide the total damage amongst all heroes.
-    # Return the number of heros that died in attack.
-    def deal_damage(self, damage):
-        damage_each = damage / heroes.length()
-        local_death_count = 0
-
-        for x in heroes:
-            x.take_damage(damage_each)
-            if x.health < 1:
-                local_death_count += 1
-
-        return local_death_count
 
     #resets all heroes to full health
     def revive_heroes(self, health=100):
@@ -146,9 +153,6 @@ class Team:
         for x in heroes:
             print(x.kills / x.deaths)
 
-    def update_kills(self, num): #updates all heroes in a team when there is a kill
-        for x in heroes:
-            x.kills += num
 
 class Armor:
     def __init__(self, name, defense): #Instantiate name and defense strength
