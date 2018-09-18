@@ -66,6 +66,7 @@ class Hero:
     #subtract the damage amount from the hero's health. Update death count if hero dies
     def take_damage(self, damage_amt):
         self.health -= damage_amt
+        # print(self.health)
         if self.health < 1:
             self.deaths += 1
 
@@ -130,7 +131,7 @@ class Team:
             if x.health > 0:
                 total_team_attack += x.attack()
 
-        self.update_kills(self.deal_damage(total_team_attack - other_team.defend()))
+        self.update_kills(other_team.deal_damage(total_team_attack - other_team.defend()))
 
 
     def defend(self): # calculate our team's total defense.
