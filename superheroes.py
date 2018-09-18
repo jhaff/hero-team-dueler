@@ -101,9 +101,10 @@ class Team:
         for x in self.heroes:
             print(x.name)
 
-    class Team:
+class Team:
 
     #total our teams attack strength and call the defend() method on the rival team
+    #It should call add_kill() on each hero with the number of kills made.
     def attack(self, other_team):
         total_team_attack = 0
         for x in self.heroes:
@@ -112,12 +113,6 @@ class Team:
 
         update_kills(deal_damage(total_team_attack - other_team.defend()))
 
-
-        """
-        This method should total our teams attack strength and call the defend() method on the rival team that is passed in.
-
-        It should call add_kill() on each hero with the number of kills made.
-        """
 
     def defend(self, damage_amt): # calculate our team's total defense.
 
