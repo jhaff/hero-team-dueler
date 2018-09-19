@@ -261,8 +261,25 @@ class Arena:
             armor_value = input("What is the defense value?\nEnter a number: ")
             self.hero.add_armor(Armor(armor_name, armor_value))
 
+
     #print out the battle statistics including each heroes kill/death ratio.
     def show_stats(self):
 
         self.team_one.stats()
         self.team_two.stats()
+
+    def team_battle(self):
+        team_one_died = 0
+        team_two_died = 0
+        while team_one.find_health() > 0 and team_two.find_health() > 0:
+            self.team_one.attack(self.team_two)
+            self.team_two.attack(self.team_one)
+
+        self.team_one.update_kills()
+        self.team_two.update_kills()
+
+     def run(self):
+        self.build_team_one()
+        self.build_team_two()
+        self.team_battle()
+        self.show_stats()
