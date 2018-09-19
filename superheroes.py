@@ -151,8 +151,15 @@ class Team:
 
     # print the ratio of kills/deaths for each member of the team to the screen.
     def stats(self):
-        for x in heroes:
+        for x in self.heroes:
             print(x.kills / x.deaths)
+
+    def find_health(self):
+        total_health = 0
+        for x in self.heroes:
+            total_health += x.health
+
+        return total_health
 
 
 class Armor:
@@ -177,29 +184,29 @@ if __name__ == "__main__":
 
 class Arena:
     def __init__(self):
-        """
         self.team_one = None
         self.team_two = None
-        """
 
+    #allow user to build teams
     def build_team_one(self):
-        """
-        This method should allow a user to build team one.
-        """
+        team_one_name = input("Enter a name for Team One: ")
+        self.team_one = Team(team_one_name)
+
 
     def build_team_two(self):
-        """
-        This method should allow user to build team two.
-        """
+        team_two_name = input("Enter a name for Team Two: ")
+        self.team_two = Team(team_two_name)
 
-    def team_battle(self):
-        """
-        This method should continue to battle teams until
-        one or both teams are dead.
-        """
+    def team_battle(self): #battle until one or both teams are dead
 
+        while team_one.find_health() > 0 || team_two.find_health() > 0:
+            self.team_one.attack(team_two)
+            self.team_two.attack(team_one)
+
+
+    #print out the battle statistics including each heroes kill/death ratio.
     def show_stats(self):
-        """
-        This method should print out the battle statistics
-        including each heroes kill/death ratio.
-        """
+
+        self.team_one.stats()
+        self.team_two.stats()
+        
