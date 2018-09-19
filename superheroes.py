@@ -131,22 +131,22 @@ class Team:
             if x.health > 0:
                 total_team_attack += x.attack()
 
-        self.update_kills(other_team.deal_damage(total_team_attack - other_team.defend()))
+        self.update_kills(other_team.defend(total_team_attack))
 
 
-    def defend(self): # calculate our team's total defense.
+    def defend(self, damage_amt): # calculate our team's total defense.
 
         total_team_defense = 0
 
         for x in self.heroes:
             total_team_defense += x.defend()
 
-        return total_team_defense
+        return self.deal_damage(damage_amt - total_team_defense)
 
 
     #resets all heroes to full health
     def revive_heroes(self, health=100):
-        for x in heroes:
+        for x in self.heroes:
             x.health = 100
 
     # print the ratio of kills/deaths for each member of the team to the screen.

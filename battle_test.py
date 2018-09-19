@@ -311,7 +311,7 @@ def test_team_defend():
 def test_revive_heroes():
     heroes = []
     for _ in range(0, 20):
-        heroes.append(create_hero(health=60))
+        heroes.append(create_hero(health=100))
 
     team_one = superheroes.Team("One")
     for hero in heroes:
@@ -319,7 +319,7 @@ def test_revive_heroes():
 
     team_one.defend(300)
     for hero in team_one.heroes:
-        assert hero.health == 45
+        assert hero.health == 85
     team_one.revive_heroes()
     for hero in team_one.heroes:
-        assert hero.health == 60
+        assert hero.health == 100
