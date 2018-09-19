@@ -187,15 +187,38 @@ class Arena:
         self.team_one = None
         self.team_two = None
 
-    #allow user to build teams
+    #user to builds teams
     def build_team_one(self):
-        team_one_name = input("Enter a name for Team One: ")
-        self.team_one = Team(team_one_name)
+        team_name = input("What is the first team's name?")
+        self.team_one = Team(team_name)
+        flag = input("Add a hero? Y/N")
 
+        if flag.upper() == "N" and len(self.team_one.heroes) == 0:
+            print("There must be at least one hero in the team to begin.")
+            self.build_team_one()
+
+        while flag.upper() != "N":
+            team_hero = self.hero_builder()
+            self.team_one.add_hero(team_hero)
+            flag = input("Add an additional hero? Y/N")
+
+        return self.team_one
 
     def build_team_two(self):
-        team_two_name = input("Enter a name for Team Two: ")
-        self.team_two = Team(team_two_name)
+        team_name = input("What is the second team's name?")
+        self.team_two = Team(team_name)
+        flag = input("Add a hero? Y/N")
+
+        if flag.upper() == "N" and len(self.team_two.heroes) == 0:
+            print("There must be at least one hero in the team to begin.")
+            self.build_team_two()
+
+        while flag.upper() != "N":
+            team_hero = self.hero_builder()
+            self.team_two.add_hero(team_hero)
+            flag = input("Add an additional hero? Y/N")
+
+        return self.team_two
 
     def team_battle(self): #battle until one or both teams are dead
 
