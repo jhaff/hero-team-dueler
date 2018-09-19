@@ -211,7 +211,7 @@ class Arena:
             self.hero = Hero(hero_name, 100)
 
             ability_count = input("How many abilities does this hero have?(Numerical input) ")
-            self.create_abilities(int(ability_number))
+            self.create_abilities(int(ability_count))
 
             armor_count = input("How many pieces of armor does this hero have?(Numerical input) ")
             self.create_armors(int(armor_count))
