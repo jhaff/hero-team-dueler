@@ -173,3 +173,33 @@ if __name__ == "__main__":
     new_ability = Ability("Super Human Strength", 800)
     hero.add_ability(new_ability)
     print(hero.attack())
+
+
+class Arena:
+    def __init__(self):
+        """
+        self.team_one = None
+        self.team_two = None
+        """
+
+    def build_team_one(self):
+        """
+        This method should allow a user to build team one.
+        """
+
+    def build_team_two(self):
+        """
+        This method should allow user to build team two.
+        """
+
+    def team_battle(self):
+        """
+        This method should continue to battle teams until
+        one or both teams are dead.
+        """
+
+    def show_stats(self):
+        """
+        This method should print out the battle statistics
+        including each heroes kill/death ratio.
+        """
