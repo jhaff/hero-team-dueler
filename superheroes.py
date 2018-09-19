@@ -203,10 +203,43 @@ class Arena:
             self.team_one.attack(team_two)
             self.team_two.attack(team_one)
 
+        # Function that lets the user create a hero along with armors and abilities
+    def build_hero(self):
+        try:
+            hero_name = input("What is this hero name? ")
+
+            self.hero = Hero(hero_name, 100)
+
+            ability_count = input("How many abilities does this hero have?(Numerical input) ")
+            self.create_abilities(int(ability_number))
+
+            armor_count = input("How many pieces of armor does this hero have?(Numerical input) ")
+            self.create_armors(int(armor_count))
+
+            return self.hero
+
+        except ValueError:
+            print("You didn't enter a numerical value!")
+
+        except KeyboardInterrupt:
+            print("You tried to interrupt the program!")
+
+   # adding abilities for hero builder
+    def create_abilities(self, abilities_num):
+        for ability in range(0, abilities_num):
+            ability_name = input("What is the name of this ability? ")
+            ability_strength = input("How strong is this ability? \Enter a number: ")
+            self.hero.add_ability(Ability(ability_name, ability_strength))
+
+    # Handle adding armors for hero builder
+    def create_armors(self, armor_num):
+        for armor in range(0, armor_num):
+            armor_name = input("What is the name of the gear? ")
+            armor_value = input("What is the defense value?\nEnter a number: ")
+            self.hero.add_armor(Armor(armor_name, armor_value))
 
     #print out the battle statistics including each heroes kill/death ratio.
     def show_stats(self):
 
         self.team_one.stats()
         self.team_two.stats()
-        
