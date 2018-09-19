@@ -170,18 +170,6 @@ class Armor:
     def defend(self):
         return random.randint(0, self.defense)
 
-
-if __name__ == "__main__":
-    hero = Hero("Wonder Woman")
-    print(hero.attack())
-    ability = Ability("Divine Speed", 300)
-    hero.add_ability(ability)
-    print(hero.attack())
-    new_ability = Ability("Super Human Strength", 800)
-    hero.add_ability(new_ability)
-    print(hero.attack())
-
-
 class Arena:
     def __init__(self):
         self.team_one = None
@@ -198,7 +186,7 @@ class Arena:
             self.build_team_one()
 
         while flag.upper() != "N":
-            team_hero = self.hero_builder()
+            team_hero = self.build_hero()
             self.team_one.add_hero(team_hero)
             flag = input("Add an additional hero? Y/N")
 
@@ -220,16 +208,11 @@ class Arena:
 
         return self.team_two
 
-    def team_battle(self): #battle until one or both teams are dead
-
-        while team_one.find_health() > 0 || team_two.find_health() > 0:
-            self.team_one.attack(team_two)
-            self.team_two.attack(team_one)
 
         # Function that lets the user create a hero along with armors and abilities
     def build_hero(self):
         try:
-            hero_name = input("What is this hero name? ")
+            hero_name = input("What is this hero's name? ")
 
             self.hero = Hero(hero_name, 100)
 
@@ -278,8 +261,23 @@ class Arena:
         self.team_one.update_kills()
         self.team_two.update_kills()
 
-     def run(self):
+    def run(self):
         self.build_team_one()
         self.build_team_two()
         self.team_battle()
         self.show_stats()
+
+if __name__ == "__main__":
+
+    arena= Arena()
+
+    arena.run()
+
+    # hero = Hero("Wonder Woman")
+    # print(hero.attack())
+    # ability = Ability("Divine Speed", 300)
+    # hero.add_ability(ability)
+    # print(hero.attack())
+    # new_ability = Ability("Super Human Strength", 800)
+    # hero.add_ability(new_ability)
+    # print(hero.attack())
