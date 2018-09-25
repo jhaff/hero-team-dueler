@@ -202,7 +202,7 @@ class Arena:
             self.build_team_two()
 
         while flag.upper() != "N":
-            team_hero = self.hero_builder()
+            team_hero = self.build_hero()
             self.team_two.add_hero(team_hero)
             flag = input("Add an additional hero? Y/N")
 
@@ -234,14 +234,14 @@ class Arena:
     def create_abilities(self, abilities_num):
         for ability in range(0, abilities_num):
             ability_name = input("What is the name of this ability? ")
-            ability_strength = input("How strong is this ability? \Enter a number: ")
+            ability_strength = int(input("How strong is this ability? \Enter a number: "))
             self.hero.add_ability(Ability(ability_name, ability_strength))
 
     # Handle adding armors for hero builder
     def create_armors(self, armor_num):
         for armor in range(0, armor_num):
             armor_name = input("What is the name of the gear? ")
-            armor_value = input("What is the defense value?\nEnter a number: ")
+            armor_value = int(input("What is the defense value?\nEnter a number: "))
             self.hero.add_armor(Armor(armor_name, armor_value))
 
 
@@ -254,7 +254,7 @@ class Arena:
     def team_battle(self):
         team_one_died = 0
         team_two_died = 0
-        while team_one.find_health() > 0 and team_two.find_health() > 0:
+        while self.team_one.find_health() > 0 and self.team_two.find_health() > 0:
             self.team_one.attack(self.team_two)
             self.team_two.attack(self.team_one)
 
