@@ -1,5 +1,6 @@
 from io import BytesIO
 import random
+from termcolor import colored
 
 class Ability:
 
@@ -131,6 +132,9 @@ class Team:
             if x.health > 0:
                 total_team_attack += x.attack()
 
+        print("Team %s attacked Team %s with an attack of %s!" % (colored(self.name, "yellow"), colored(other_team.name, "yellow"), colored(str(total_team_attack), "yellow")))
+
+
         self.update_kills(other_team.defend(total_team_attack))
 
 
@@ -141,7 +145,11 @@ class Team:
         for x in self.heroes:
             total_team_defense += x.defend()
 
-        return self.deal_damage(damage_amt - total_team_defense)
+        if damage_amt > total_team_defense:
+            return self.deal_damage(damage_amt - total_team_defense)
+
+        else:
+            return 0
 
 
     #resets all heroes to full health
@@ -152,11 +160,16 @@ class Team:
     # print the ratio of kills/deaths for each member of the team to the screen.
     def stats(self):
         for x in self.heroes:
-            print(x.kills / x.deaths)
+            if x.deaths != 0:
+                print(" {}'s Kill/Death Ratio: {}".format(x.name,(x.kills / x.deaths)))
+            else:
+                print(" {} Has only kills {}".format(x.name,(x.kills)))
 
     def find_health(self):
         total_health = 0
+        # print("find_health %s" % (self.heroes))
         for x in self.heroes:
+            print("Team: {} Hero: {} health: {}".format(self.name, x.name, x.health))
             total_health += x.health
 
         return total_health
@@ -234,7 +247,7 @@ class Arena:
     def create_abilities(self, abilities_num):
         for ability in range(0, abilities_num):
             ability_name = input("What is the name of this ability? ")
-            ability_strength = int(input("How strong is this ability? \Enter a number: "))
+            ability_strength = int(input("How strong is this ability? \nEnter a number: "))
             self.hero.add_ability(Ability(ability_name, ability_strength))
 
     # Handle adding armors for hero builder
@@ -258,8 +271,8 @@ class Arena:
             self.team_one.attack(self.team_two)
             self.team_two.attack(self.team_one)
 
-        self.team_one.update_kills()
-        self.team_two.update_kills()
+        # self.team_one.update_kills()
+        # self.team_two.update_kills()
 
     def run(self):
         self.build_team_one()
