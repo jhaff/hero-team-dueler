@@ -107,9 +107,8 @@ class Team:
         for x in self.heroes:
             print(x.name)
 
-    #total our teams attack strength and call the defend() method on the rival team
-    #It should call add_kill() on each hero with the number of kills made.
-    def update_kills(self, num): #updates all heroes in a team when there is a kill
+
+    def update_kills(self, num): #updates all heroes’ in a team kill count with specified number
         for x in self.heroes:
             x.kills += num
 
@@ -243,14 +242,14 @@ class Arena:
         except KeyboardInterrupt:
             print("You tried to interrupt the program!")
 
-   # adding abilities for hero builder
+   # creating abilities for hero builder
     def create_abilities(self, abilities_num):
         for ability in range(0, abilities_num):
             ability_name = input("What is the name of this ability? ")
             ability_strength = int(input("How strong is this ability? \nEnter a number: "))
             self.hero.add_ability(Ability(ability_name, ability_strength))
 
-    # Handle adding armors for hero builder
+    # creating armors for hero builder
     def create_armors(self, armor_num):
         for armor in range(0, armor_num):
             armor_name = input("What is the name of the gear? ")
@@ -271,9 +270,6 @@ class Arena:
             self.team_one.attack(self.team_two)
             self.team_two.attack(self.team_one)
 
-        # self.team_one.update_kills()
-        # self.team_two.update_kills()
-
     def run(self):
         self.build_team_one()
         self.build_team_two()
@@ -282,15 +278,5 @@ class Arena:
 
 if __name__ == "__main__":
 
-    arena= Arena()
-
+    arena = Arena() # initialize arena
     arena.run()
-
-    # hero = Hero("Wonder Woman")
-    # print(hero.attack())
-    # ability = Ability("Divine Speed", 300)
-    # hero.add_ability(ability)
-    # print(hero.attack())
-    # new_ability = Ability("Super Human Strength", 800)
-    # hero.add_ability(new_ability)
-    # print(hero.attack())
