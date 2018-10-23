@@ -54,8 +54,8 @@ class Hero:
             total_strength += ability.attack()
         return total_strength
 
-
-    def defend(self): #runs defend method on each armor, calculate total defense. Check if hero is dead
+    #runs defend method on each armor, calculate total defense. Check if hero is dead
+    def defend(self):
 
         total_defense = 0
         for x in self.armors:
@@ -131,7 +131,7 @@ class Team:
             if x.health > 0:
                 total_team_attack += x.attack()
 
-        print("Team %s attacked Team %s with an attack of %s!" % (colored(self.name, "yellow"), colored(other_team.name, "yellow"), colored(str(total_team_attack), "yellow")))
+        print("Team %s attacked Team %s with a power of %s!" % (colored(self.name, "yellow"), colored(other_team.name, "yellow"), colored(str(total_team_attack), "yellow")))
 
 
         self.update_kills(other_team.defend(total_team_attack))
@@ -221,7 +221,7 @@ class Arena:
         return self.team_two
 
 
-        # Function that lets the user create a hero along with armors and abilities
+    # Function that lets the user create a hero along with armors and abilities
     def build_hero(self):
         try:
             hero_name = input("What is this hero's name? ")
@@ -257,7 +257,7 @@ class Arena:
             self.hero.add_armor(Armor(armor_name, armor_value))
 
 
-    #print out the battle statistics including each heroes kill/death ratio.
+    #print out battle statistics / each heroes kill/death ratio.
     def show_stats(self):
 
         self.team_one.stats()
