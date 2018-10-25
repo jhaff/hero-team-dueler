@@ -5,7 +5,7 @@ from termcolor import colored
 class Ability:
 
     name = ""
-    attack_strength = 0    # represents the maximum attack strength.
+    attack_strength = 0    # represents the maximum attack strength of the ability
 
 
     def __init__(self, name, attack_strength): # Initialize starting values
@@ -34,11 +34,9 @@ class Weapon(Ability):
 
 
 class Hero:
-
     def __init__(self, name, health=100): # Initialize starting values
         self.name = name
         self.abilities = list()
-
         self.armors = list()
         self.start_health = health
         self.health = health
@@ -138,7 +136,6 @@ class Team:
 
 
     def defend(self, damage_amt): # calculate our team's total defense.
-
         total_team_defense = 0
 
         for x in self.heroes:
@@ -221,7 +218,7 @@ class Arena:
         return self.team_two
 
 
-    # Function that lets the user create a hero along with armors and abilities
+    # Function that allows the user to create a hero along with armors and abilities
     def build_hero(self):
         try:
             hero_name = input("What is this hero's name? ")
